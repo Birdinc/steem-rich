@@ -80,11 +80,28 @@
     </div>
     <!-- /.container -->
 
+    <div id="container" class="container">
+
+      <div class="row">
+          <div class="form-group col-6">
+             <label>User Name</label>
+             <input class="form-control" type="text" v-model.lazy="user">
+           </div>
+      </div>
+      <pre>{{ userData }}</pre>
+
+    </div>
+
     <!-- jQuery Version 1.11.1 -->
     <script src="js/jquery.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
+
+    <!-- Vue -->
+    <script src="//unpkg.com/vue"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bluebird/3.5.0/bluebird.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.min.js"></script>
 
     <!-- Steem API -->
     <script src="https://cdn.steemjs.com/lib/latest/steem.min.js"></script>
@@ -94,6 +111,94 @@
            console.log(err, response);
         });
     </script>
+
+    <script>
+       {
+         let vm = new Vue({
+           el: '#container',
+           data: {
+             user: 'jfollas',
+             userData: {
+               profile_image: "",
+               level: 0,
+               xp: 0,
+               power: 0
+             }
+           },
+           watch: {
+             user: function (u) {
+               setDefaultUserProfilePic()
+               refreshAccountData(u)
+             }
+           }
+         })
+
+         function calcLevel(v) {
+           return Math.floor(calcReputation(v))
+         }
+
+         function calcXP(v) {
+           let r = calcReputation(v);
+           return 100 * (r - Math.floor(r))
+         }
+
+         function log10(str) {
+           let $str = str.toString()
+           const leadingDigits = parseInt($str.substring(0, 4))
+           const log = Math.log(leadingDigits) / Math.log(10)
+           const n = $str.length - 1
+           return n + (log - parseInt(log))
+         }
+
+         function calcReputation(value) {
+           if (value == null || value == 0) return 0;
+
+           let neg = value < 0
+           let reputation_level = log10(value) - 9;
+           if (reputation_level < 0) reputation_level = 0;
+           if (neg) reputation_level *= -1;
+
+           return reputation_level * 9 + 25;
+         }
+
+         function setDefaultUserProfilePic() {
+           vm.$set(vm.userData, 'profile_image', 'https://www.gravatar.com/avatar/000000000000000000000000000000000?d=mm&amp;f=y')
+         }
+
+         function refreshAccountData(accountName) {
+           return steem.api.getAccountsAsync([accountName])
+             .then(function (result) {
+               if (result.length == 0) {
+                 vm.userData = {
+                   profile_image: "",
+                   level: 0,
+                   xp: 0,
+                   power: 0
+                 }
+                 return
+               }
+
+               try {
+                 let profile = JSON.parse(result[0].json_metadata).profile
+
+                 if (profile.profile_image != null) {
+                   vm.$set(vm.userData, 'profile_image', profile.profile_image)
+                 }
+               }
+               catch (err) {
+                 do_setDefaultUserProfilePic()
+               }
+
+               vm.$set(vm.userData, 'level', calcLevel(result[0].reputation))
+               vm.$set(vm.userData, 'xp', calcXP(result[0].reputation))
+               vm.$set(vm.userData, 'power', result[0].voting_power / 100)
+             })
+             .catch(console.error)
+         }
+
+         refreshAccountData(vm.user)
+       }
+ </script>
 
 </body>
 

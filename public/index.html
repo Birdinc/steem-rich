@@ -44,7 +44,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Steem Rich</a>
+                <a class="navbar-brand" href="index.html">Steem Rich</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -89,7 +89,13 @@
 
     <script>
         steem.api.getAccounts(['birdinc'], function(err, response){
-           console.log(err, response);
+          console.log(err, response);
+        });
+    </script>
+
+    <script>
+        steem.api.getCurrentMedianHistoryPrice(function(err, result) {
+          console.log(err, result);
         });
     </script>
 
