@@ -117,12 +117,13 @@
          let vm = new Vue({
            el: '#container',
            data: {
-             user: 'jfollas',
+             user: 'birdinc',
              userData: {
                profile_image: "",
                level: 0,
                xp: 0,
-               power: 0
+               power: 0,
+               follower_count: 0
              }
            },
            watch: {
@@ -173,7 +174,8 @@
                    profile_image: "",
                    level: 0,
                    xp: 0,
-                   power: 0
+                   power: 0,
+                   follower_count: 0
                  }
                  return
                }
@@ -188,6 +190,11 @@
                catch (err) {
                  do_setDefaultUserProfilePic()
                }
+
+               steem.api.getFollowCountAsync(accountName)
+                   .then(function (result) {
+                     vm.$set(vm.userData, 'follower_count', result.follower_count)
+                   })
 
                vm.$set(vm.userData, 'level', calcLevel(result[0].reputation))
                vm.$set(vm.userData, 'xp', calcXP(result[0].reputation))
