@@ -32,9 +32,7 @@
 </head>
 
 <body>
-
-
-
+    
     <!-- Navigation -->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
@@ -88,12 +86,21 @@
              <input class="form-control" type="text" v-model.lazy="user">
            </div>
       </div>
-      <pre>{{ userData }}</pre>
-
+        
+      <div>  
+        <pre>{{ userData }}</pre>
+      </div>
+        
+      <div id="profile-image">  
+        <pre>{{ userData.profile_image }}</pre>
+      </div>
+          
     </div>
 
     <!-- jQuery Version 1.11.1 -->
     <script src="js/jquery.js"></script>
+    
+    $('#profile-image').prepend('<img src=" + userData.profile_image + " />')
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
