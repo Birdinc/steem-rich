@@ -100,8 +100,6 @@
     <!-- jQuery Version 1.11.1 -->
     <script src="js/jquery.js"></script>
     
-    $('#profile-image').prepend('<img src=" + userData.profile_image + " />')
-
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
 
@@ -206,6 +204,7 @@
                vm.$set(vm.userData, 'level', calcLevel(result[0].reputation))
                vm.$set(vm.userData, 'xp', calcXP(result[0].reputation))
                vm.$set(vm.userData, 'power', result[0].voting_power / 100)
+               $('#profile-image').prepend('<img src=" + userData.profile_image + " />')
              })
              .catch(console.error)
          }
