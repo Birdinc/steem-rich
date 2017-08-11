@@ -93,16 +93,18 @@
         
       <div id="profile-image">  
         <img src="{{ userData.profile_image }}">
-      </div>c=
+      </div>
           
     </div>
 
     <!-- jQuery Version 1.11.1 -->
     <script src="js/jquery.js"></script>
     
-    $(document).ready(function(){
-        $('#profile-image').prepend('<img src=" + userData.profile_image + " />')
-    });
+    <script>
+        $(document).ready(function(){
+            $('#profile-image').prepend('<img src=" + userData.profile_image + " />')
+        });
+    </script>
     
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
