@@ -70,7 +70,7 @@
 
         <div class="row">
             <div class="col-lg-12 text-center">
-                <h1>Coming soon!</h1>
+                <h1 id="displayText"></h1>
             </div>
         </div>
         <!-- /.row -->
@@ -97,6 +97,29 @@
         steem.api.getCurrentMedianHistoryPrice(function(err, result) {
           console.log(err, result);
         });
+    </script>
+
+
+
+    <script src="https://www.gstatic.com/firebasejs/4.3.1/firebase.js"></script>
+    <script>
+          // Initialize Firebase
+          var config = {
+            apiKey: "AIzaSyDwOfQYipIlH1BYffYSriivBvWNATiUrEc",
+            authDomain: "steem-rich.firebaseapp.com",
+            databaseURL: "https://steem-rich.firebaseio.com",
+            projectId: "steem-rich",
+            storageBucket: "steem-rich.appspot.com",
+            messagingSenderId: "562047536983"
+          };
+          firebase.initializeApp(config);
+
+          // Get a reference to the database service
+          // var database = firebase.database();
+          var displayText = document.getElementById('displayText');
+          var dbRef = firebase.database().ref().child('birdinc')
+          dbRef.on('value', snap => displayText.innerText = snap.val());
+
     </script>
 
 </body>
