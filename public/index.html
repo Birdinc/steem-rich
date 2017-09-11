@@ -13,7 +13,7 @@
 
   <!-- Bootstrap Core CSS -->
   <link href="css/bootstrap.min.css" rel="stylesheet">
-    
+
   <link rel="shortcut icon" type="image/png" href="dollar-sign-fav-icon.png">
 
   <!-- Custom CSS -->
@@ -77,6 +77,8 @@
     </div>
     <!-- /.row -->
 
+    <div id="kai"> </div>
+
   </div>
   <!-- /.container -->
 
@@ -103,6 +105,14 @@
 
   <script src="https://www.gstatic.com/firebasejs/4.3.1/firebase.js"></script>
 
+  <script type="text/javascript">
+    //https://script.google.com/macros/s/AKfycbxY3JJYKHoOxd5A67RbclBuj5WWZkXbCs7we2QeyxYwFXMhN4s/exec
+
+    $(document).ready(function() {
+
+    });
+  </script>
+
   <script>
     // Initialize Firebase
     var config = {
@@ -120,6 +130,16 @@
     var displayText = document.getElementById('displayText');
     var dbRef = firebase.database().ref().child('birdinc')
     dbRef.on('value', snap => displayText.innerText = snap.val());
+
+    var myData = firebase.database().ref('rising-stars-json/-KtlfR-X_zeG9ifrhtNt').once('value').then(function(snapshot) {
+      var myData = JSON.parse(snapshot.val());
+      //  console.log(myData);
+      for (var i = 0; i < myData.length; i++) {
+        $('#kai').append("<br>" + myData[i].name + "  " + myData[i].count);
+        console.log(myData[i]);
+      }
+      // var username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
+    });
   </script>
 
 </body>
