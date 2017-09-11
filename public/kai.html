@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Steem Rich</title>
+    
+    <script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
+</head>
+
+<body>
+<div id="kai"> </div>
+<script type="text/javascript">
+
+//https://script.google.com/macros/s/AKfycbxY3JJYKHoOxd5A67RbclBuj5WWZkXbCs7we2QeyxYwFXMhN4s/exec
+
+$( document ).ready(function() {
+
+
+
+});
+
+</script>
+ <script src="https://www.gstatic.com/firebasejs/4.3.1/firebase.js"></script>
+
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyDwOfQYipIlH1BYffYSriivBvWNATiUrEc",
+      authDomain: "steem-rich.firebaseapp.com",
+      databaseURL: "https://steem-rich.firebaseio.com",
+      projectId: "steem-rich",
+      storageBucket: "steem-rich.appspot.com",
+      messagingSenderId: "562047536983"
+    };
+    firebase.initializeApp(config);
+
+    // Get a reference to the database service
+    var database = firebase.database(); // unused variable
+    var displayText = document.getElementById('displayText');
+    var dbRef = firebase.database().ref().child('rising-stars-json') ;
+
+  var myData = firebase.database().ref('rising-stars-json/-KtlXqTBvw5KUZ3ECDc0').once('value').then(function(snapshot) {
+    var myData = JSON.parse(snapshot.val()); 
+  //  console.log(myData); 
+     for (var i = 0 ; i < myData.length; i++ ) {
+      $('#kai').append("<br>" +  myData[i].name + "  " +  myData[i].count); 
+     console.log(myData[i]); 
+     }
+    // var username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
+    });
+
+  </script>
+
+
+</body>
