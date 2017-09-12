@@ -135,7 +135,7 @@
       var myData = JSON.parse(snapshot.val());
       //  console.log(myData);
       for (var i = 0; i < myData.length; i++) {
-        $('#kai').append("<br>" + myData[i].name + "  " + myData[i].count);
+        $('#kai').append("<br><a href='https://steemit.com/@" + myData[i].name + "'>"  + myData[i].name  + "</a>");
         console.log(myData[i]);
       }
       // var username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
