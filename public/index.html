@@ -46,7 +46,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-        <a color: gold class="navbar-brand" href="https://steemrich.com/">Steem Rich</a>
+        <a color: gold class="navbar-brand" href="index.html">Steem Rich</a>
       </div>
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -135,7 +135,7 @@
       var myData = JSON.parse(snapshot.val());
       //  console.log(myData);
       for (var i = 0; i < myData.length; i++) {
-        $('#rising-stars').append("<br><a href='https://steemit.com/@" + myData[i].name + "'>"  + myData[i].name  + "</a>");
+        $('#rising-stars').append("<br><a href='https://steemit.com/@" + myData[i].name + "' target='_blank'>"  + myData[i].name  + "</a>");
         console.log(myData[i]);
       }
       // var username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
