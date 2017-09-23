@@ -71,14 +71,6 @@
   <div class="container">
 
     <div class="row">
-      <div class="col-lg-12 text-center">
-        <h1 id="displayText">firebase</h1>
-      </div>
-    </div>
-    <!-- /.row -->
-
-    
-    <div class="row">
       <div class="col-md-12">
           <table class="table table-striped" id="risingStarsTable">
             <thead>
@@ -167,8 +159,8 @@
        var myData = JSON.parse(snapshot.val());
       //  console.log(snapshot.val());
       for (var i = 0; i < myData.length; i++) {
-        var rawDate = myData[i].date ; 
-       // var prettyDate = new Date(rawDate, 'MM-YY-'); 
+        var rawDate = myData[i].date ;
+       // var prettyDate = new Date(rawDate, 'MM-YY-');
         //$('#rising-stars').append("<br><a href='https://steemit.com/@" + myData[i].name + "' target='_blank'>"  + myData[i].name  + "</a>");
          $('#risingStarsBody').append("<tr><td><a href='https://steemit.com/@" + myData[i].name + "' target='_blank'>"  + myData[i].name  + "</a><td>" + myData[i].count +"</td><td>" + rawDate + "</td></tr>");
         console.log(myData[i]);
