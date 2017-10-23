@@ -72,17 +72,18 @@
 
     <div class="row">
       <div class="col-md-12">
-          <table class="table table-striped table-bordered" id="risingStarsTable">
-            <thead>
-              <tr>
+        <table class="table table-striped table-bordered" id="risingStarsTable">
+          <thead>
+            <tr>
+              <th>Rank</th>
               <th>User Name</th>
               <th>Follower Count</th>
               <th>Account Created Date</th>
-              </tr>
-            </thead>
-            <tbody id="risingStarsBody">
-            </tbody>
-          </table>
+            </tr>
+          </thead>
+          <tbody id="risingStarsBody">
+          </tbody>
+        </table>
       </div>
 
     </div>
@@ -139,33 +140,16 @@
     var displayText = document.getElementById('displayText');
     var dbRef = firebase.database().ref().child('birdinc')
     dbRef.on('value', snap => displayText.innerText = snap.val());
-    /*
-     firebase.database().ref('rising-stars-json/-KtlfR-X_zeG9ifrhtNt').once('value').then(function(snapshot) {
-      var myData = JSON.parse(snapshot.val());
-      //  console.log(myData);
-      for (var i = 0; i < myData.length; i++) {
-        $('#rising-stars').append("<br><a href='https://steemit.com/@" + myData[i].name + "' target='_blank'>"  + myData[i].name  + "</a>");
-        console.log(myData[i]);
-      }
-
-
-      // var username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
-    });
-  */
 
     firebase.database().ref('rising-stars-json').limitToLast(1).on('child_added', function(snapshot) {
-   // firebase.database().ref('rising-stars-json').limitToLast(1).once('value').then(function(snapshot) {
-       console.log(snapshot.val());
-       var myData = JSON.parse(snapshot.val());
-      //  console.log(snapshot.val());
+      // console.log(snapshot.val());
+      var myData = JSON.parse(snapshot.val());
       for (var i = 0; i < myData.length; i++) {
-        var rawDate = myData[i].date ;
-       // var prettyDate = new Date(rawDate, 'MM-YY-');
+        var rawDate = myData[i].date;
+        // var prettyDate = new Date(rawDate, 'MM-YY-');
         //$('#rising-stars').append("<br><a href='https://steemit.com/@" + myData[i].name + "' target='_blank'>"  + myData[i].name  + "</a>");
-         $('#risingStarsBody').append("<tr><td><a href='https://steemit.com/@" + myData[i].name + "' target='_blank'>"  + myData[i].name  + "</a><td>" + myData[i].count +"</td><td>" + rawDate + "</td></tr>");
-        console.log(myData[i]);
+        $('#risingStarsBody').append("<tr><td><a href='https://steemit.com/@" + myData[i].name + "' target='_blank'>" + myData[i].name + "</a><td>" + myData[i].count + "</td><td>" + rawDate + "</td></tr>");
       }
-
     });
   </script>
 
