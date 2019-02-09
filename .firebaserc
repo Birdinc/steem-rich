@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "steem-rich"
+    "default": "steem-rich",
+    " ": "steem-rich"
   }
 }
