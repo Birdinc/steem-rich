@@ -1,0 +1,26 @@
+/* body {
+  background-color: blue;
+}  */
+
+#button {
+  margin: 10px;
+}
+
+.topright {
+  position: absolute;
+  top: 8px;
+  right: 16px;
+  font-size: 18px;
+}
+
+@media only screen and (max-width: 600px) {
+  body {
+    background-color: lightblue;
+  }
+
+  #button {
+    margin-top: 0;
+    margin-left: 0;
+    margin-bottom: 15px;
+  }
+}

@@ -22,6 +22,7 @@
   <link rel="shortcut icon" type="image/png" href="img/favicon.png">
 
   <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/custom.css">
   <style>
     body {
       padding-top: 70px;
@@ -62,10 +63,10 @@
           <li>
             <a href="rising-stars.html">Rising Stars</a>
           </li>
-          <li>
-            <a href="steemit-tools.html">Steemit Tools</a>
-          </li>
         </ul>
+        <div>
+          <button type="button" class="btn btn-primary navbar-right" id="button">Login</button>
+        </div>
       </div>
       <!-- /.navbar-collapse -->
     </div>
@@ -95,7 +96,7 @@
   <script src="https://cdn.steemjs.com/lib/latest/steem.min.js"></script>
 
   <script>
-    steem.api.getAccounts(['birdinc'], function(err, response) {
+    steem.api.getAccounts(['ned'], function(err, response) {
       console.log(err, response);
     });
   </script>
@@ -105,6 +106,18 @@
       //console.log(err, result);
     });
   </script>
+
+  <!-- Import and configure the Firebase SDK -->
+  <!-- These scripts are made available when the app is served or deployed on Firebase Hosting -->
+  <!-- If you do not want to serve/host your project using Firebase Hosting see https://firebase.google.com/docs/web/setup -->
+  <script src="/__/firebase/5.5.6/firebase-app.js"></script>
+  <script src="/__/firebase/5.5.6/firebase-auth.js"></script>
+  <script src="/__/firebase/5.5.6/firebase-database.js"></script>
+  <script src="/__/firebase/5.5.6/firebase-storage.js"></script>
+  <script src="/__/firebase/5.5.6/firebase-messaging.js"></script>
+  <script src="/__/firebase/init.js"></script>
+
+  <script src="js/main.js"></script>
 
   <script type="text/javascript">
     // https://script.google.com/macros/s/AKfycbxJ4EPi8BNTA_jv4Qk5BGMbSwkvNgd60BwLsEjk9eEDWaH_B5cW/exec
