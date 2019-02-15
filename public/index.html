@@ -65,7 +65,11 @@
           </li>
         </ul>
         <div>
-          <button type="button" class="btn btn-primary navbar-right" id="button">Login</button>
+          <div hidden id="user-pic"></div>
+          <div hidden id="user-name"></div>
+          <button id="sign-out" type="button" class="btn btn-primary navbar-right button">Sign-out</button>
+          <button id="#click" type="button" name="button" class="btn btn-primary navbar-right button">Click</button>
+          <button hidden id="sign-in" type="button" class="btn btn-primary navbar-right">Sign-in with Google</button>
         </div>
       </div>
       <!-- /.navbar-collapse -->
@@ -95,17 +99,7 @@
   <!-- Steem API -->
   <script src="https://cdn.steemjs.com/lib/latest/steem.min.js"></script>
 
-  <script>
-    steem.api.getAccounts(['ned'], function(err, response) {
-      console.log(err, response);
-    });
-  </script>
-
-  <script>
-    steem.api.getCurrentMedianHistoryPrice(function(err, result) {
-      //console.log(err, result);
-    });
-  </script>
+  <script src="js/main.js"></script>
 
   <!-- Import and configure the Firebase SDK -->
   <!-- These scripts are made available when the app is served or deployed on Firebase Hosting -->
@@ -117,8 +111,6 @@
   <script src="/__/firebase/5.5.6/firebase-messaging.js"></script>
   <script src="/__/firebase/init.js"></script>
 
-  <script src="js/main.js"></script>
-
   <script type="text/javascript">
     // https://script.google.com/macros/s/AKfycbxJ4EPi8BNTA_jv4Qk5BGMbSwkvNgd60BwLsEjk9eEDWaH_B5cW/exec
 
@@ -127,6 +119,11 @@
     });
   </script>
 
+  <script>
+    document.querySelector("#click").onclick = function() {
+      alert("hello");
+    }
+  </script>
 
 </body>
 
